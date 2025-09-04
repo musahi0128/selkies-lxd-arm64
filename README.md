@@ -13,6 +13,10 @@ bash setup.i3.sh
 # bash setup.xfce4.sh
 ```
 
+## Notes
+
+If you intend to use a joystick, you must run `00-lxd-host-joystick.sh` on the LXD host before running the setup script.
+
 ## Access
 ```
 http://localhost:3000
@@ -28,3 +32,8 @@ Unfortunately, they didn’t provide a portable Selkies-GStreamer build for ARM6
 After several failed attempts to find an alternative, I stumbled upon [Chromium - LinuxServer.io](https://docs.linuxserver.io/images/docker-chromium/), which worked flawlessly for my use case.
 
 Curious about how the image was built and how it functioned, I decided to dig deeper and eventually adapted it to run inside an LXD container.
+
+## Todo
+- [ ] Fix `Download` function.
+- [ ] Remove `proot-app` integration.
+- [ ] Cobine the setup scripts into a single interactive script.
