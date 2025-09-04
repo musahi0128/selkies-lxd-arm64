@@ -1,0 +1,35 @@
+[Unit]
+Description=Selkies service
+Requires=xvfb.service desktop.service pulseaudio.service
+After=xvfb.service desktop.service pulseaudio.service
+
+[Service]
+ExecStart=/lsiopy/bin/selkies --addr=localhost --mode=websockets
+WorkingDirectory=/lsiopy
+Restart=always
+RestartSec=5
+Environment=DISABLE_ZINK=false
+Environment=DISPLAY_CDEPTH=24
+Environment=DISPLAY_DPI=96
+Environment=DISPLAY_REFRESH=60
+Environment=DISPLAY_SIZEH=768
+Environment=DISPLAY_SIZEW=1024
+Environment=DISPLAY=:1
+Environment=GST_DEBUG=*:1
+Environment=LD_PRELOAD=/usr/lib/selkies_joystick_interposer.so:/opt/lib/libudev.so.1.0.0-fake
+Environment=LSIO_FIRST_PARTY=true
+Environment=NVIDIA_DRIVER_CAPABILITIES=all
+Environment=PERL5LIB=/usr/local/bin
+Environment=PULSE_RUNTIME_PATH=/run/user/1000/pulse
+Environment=SELKIES_ENABLE_RESIZE=true
+Environment=SELKIES_ENCODER=x264enc
+Environment=SELKIES_FRAMERATE=60
+Environment=SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so
+Environment=SHLVL=0
+Environment=START_DOCKER=false
+Environment=TITLE=REPLACE_TITLE
+Environment=TZ=Asia/Jakarta
+Environment=VIRTUAL_ENV=/lsiopy
+
+[Install]
+WantedBy=default.target

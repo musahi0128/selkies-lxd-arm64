@@ -1,0 +1,13 @@
+[Unit]
+Description=Desktop service for Selkies
+Requires=xvfb.service
+After=xvfb.service
+
+[Service]
+ExecStart=/usr/bin/dbus-launch --exit-with-session /usr/bin/REPLACE_DESKTOP
+Restart=always
+RestartSec=5
+Environment=DISPLAY=:1
+
+[Install]
+WantedBy=default.target

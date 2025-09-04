@@ -1,0 +1,26 @@
+# s6 sequence
+
+Oneshot init phase (strict order):
+→ init-config → empty
+→ init-selkies → empty
+→ init-nginx → ready for test → tested and looks ok
+→ init-selkies-config → ready for test → tested and looks ok
+→ init-video → skipped (used for setting up GPU)
+→ init-selkies-end → empty
+
+Longrun service phase:
+
+Start base services in parallel:
+svc-dbus → skipped (should be provided by the running system)
+svc-docker → skipped (not using any docker-related feature)
+svc-nginx → skipped (should be provided by the running system)
+svc-pulseaudio → skipped (should be provided by the running system)
+svc-selkies → ready for test → tested and looks ok
+
+Once those are up:
+svc-xorg starts (needs dbus, selkies, de, xsettingsd satisfied).
+svc-xsettingsd starts (after nginx and xorg).
+svc-de starts (after nginx, selkies, xorg).
+
+So the graph resolves to:
+(init oneshots) → (core services) → (Xorg + DE stack)
